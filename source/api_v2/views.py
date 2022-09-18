@@ -1,14 +1,12 @@
-import json
 
-from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponse
+
+from django.http import  HttpResponse
 from rest_framework.response import Response
-from django.shortcuts import render
-from django.views import View
-from rest_framework.exceptions import ValidationError
+
 from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 
-from api_v2.serializers import ArticleSerializer, ArticleModelsSerializer
+from api_v2.serializers import  ArticleModelsSerializer
 from webapp.models import Article
 
 
@@ -23,6 +21,11 @@ class ArticleView(APIView):
         articles_data = self.serializer_class(articles, many=True).data
         return Response(articles_data)
 
+    def patch(self, request, *args, pk, **kwargs):
+        article = Article.objects.get(pk=pk)
+        articles_data = self.serializer_class(article).data
+        return Response(articles_data)
+
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -35,3 +38,12 @@ class ArticleView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def delete(self, request, *args, pk, **kwargs):
+        article = get_object_or_404(Article, pk=pk)
+        article.delete()
+        return HttpResponse(status=204)
+
+
+
+

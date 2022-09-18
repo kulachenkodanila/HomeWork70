@@ -2,7 +2,6 @@ from decimal import Decimal
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
-from django.shortcuts import render
 from datetime import datetime
 import json
 
@@ -38,11 +37,6 @@ def echo_view(request):
 
 
 def articles_view(request):
-
-
-
-
-
 
     print(request)
     if request.method == "GET":

@@ -23,7 +23,6 @@ api_urls = [
     path("v2/", include("api_v2.urls")),
 ]
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("webapp.urls")),

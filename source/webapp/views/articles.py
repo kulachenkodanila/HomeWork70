@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Q
-from django.http import JsonResponse
 from django.urls import reverse_lazy
 
 # Create your views here.

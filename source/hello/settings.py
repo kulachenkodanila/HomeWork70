@@ -9,25 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
 from pathlib import Path
-import environ
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-env = environ.Env(
-    DEBUG=(bool, False)
-)
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
-
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = env.str("EMAIL_HOST")
-EMAIL_PORT = env.int("EMAIL_PORT", 587)
-EMAIL_HOST_USER = env.str("EMAIL_USER")
-EMAIL_HOST_PASSWORD = env.str("EMAIL_PASSWORD")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -54,7 +39,7 @@ INSTALLED_APPS = [
     'webapp',
     'accounts',
     'api_v1',
-    'api_v2',
+    'api_v2'
 ]
 
 MIDDLEWARE = [
@@ -137,7 +122,6 @@ LOGIN_REDIRECT_URL = "webapp:index"
 
 MEDIA_ROOT = Path.joinpath(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
